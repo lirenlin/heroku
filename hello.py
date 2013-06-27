@@ -69,15 +69,15 @@ def hello():
         #output += "%s\n"%note.title
         m = re.search(r'<en-note><div>(?P<content>[^<].+)</div></en-note>', content)
         if m:
-            noteBody += "%s\n" % m.group('content')
+            noteBody = "%s" % m.group('content')
+            noteBody = noteBody.decode('utf-8')
 
-    #noteBody = noteBody.encode('utf-8')
     #print isInstance(noteBody,unicode)
 
     weather.getAndDraw()
 
     output = codecs.open('weather-script-output.svg', 'r', encoding='utf-8').read()
-    #output =  output.replace(u''.encode('utf-8'), str(noteBody))
+    output =  output.replace('NOTE_TEXT', noteBody)
     #codecs.open('weather.svg', 'w+', encoding='unicode').write(noteBody)
     #print output
 

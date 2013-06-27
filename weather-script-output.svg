@@ -44,7 +44,7 @@
 <g font-family="DejaVu Sans">
 <text style="text-anchor:middle;" font-size="25px" y="30" x="140">Fri, Jun 28, Aachen:</text>
 <text style="text-anchor:middle;" font-size="22px" y="280" x="40">High:</text>
-<text style="text-anchor:end;" font-size="30px" y="280" x="110">10</text>
+<text style="text-anchor:end;" font-size="30px" y="280" x="110">9</text>
 <text style="text-anchor:middle;" font-size="18px" y="260" x="120">°C</text>
 <text style="text-anchor:middle;" font-size="22px" y="280" x="180">Low:</text>
 <text style="text-anchor:end;" font-size="30px" y="280" x="250">8</text>
@@ -55,7 +55,7 @@
 <text style="text-anchor:end;" font-size="20px" y="40" x="560">14</text>
 <text style="text-anchor:middle;" font-size="10px" y="30" x="570">°C</text>
 <text style="text-anchor:middle;" font-size="15px" y="70" x="510">Low:</text>
-<text style="text-anchor:end;" font-size="20px" y="70" x="560">11</text>
+<text style="text-anchor:end;" font-size="20px" y="70" x="560">10</text>
 <text style="text-anchor:middle;" font-size="10px" y="60" x="570">°C</text>
 
 <text style="text-anchor:middle;" font-size="20px" y="155" x="420">Sunday:</text>
@@ -78,7 +78,7 @@
 <path stroke="black" d="M 320 20 L 320 380 " stroke-width="6"/>
 
 <text font-family="'Arial Unicode Ms', sans-serif" style="text-anchor:middle;" font-size="15px" y="400" x="50">
-%s
+NOTE_TEXT
 </text>
 
 </svg>

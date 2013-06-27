@@ -77,7 +77,7 @@
 
 <path stroke="black" d="M 320 20 L 320 380 " stroke-width="6"/>
 
-<text font-family="'Arial Unicode Ms', sans-serif" style="text-anchor:middle;" font-size="15px" y="400" x="50">
+<text font-family="'Arial Unicode Ms', sans-serif" style="text-anchor:middle;" font-size="15px" y="400" x="150">
 NOTE_TEXT
 </text>
 
