@@ -8,6 +8,7 @@ import evernote.edam.type.ttypes as Types
 from evernote.edam.notestore.ttypes import NoteFilter
 from evernote.edam.notestore.ttypes import NotesMetadataResultSpec
 from evernote.api.client import EvernoteClient
+import weather
 
 app = Flask(__name__)
 
@@ -65,6 +66,6 @@ def hello():
         content = note_store.getNoteContent(auth_token, noteID);
         output += "%s\n"%note.title
         output += "%s\n"%content
-
-    return output
+    figure = getAndDraw()
+    return output+figure
 
