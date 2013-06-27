@@ -1,6 +1,8 @@
 import os
 from flask import Flask
+import re
 
+import codecs
 import hashlib
 import binascii
 import evernote.edam.userstore.constants as UserStoreConstants
@@ -20,17 +22,17 @@ def hello():
     if auth_token == "":
         print "Please fill in your developer token"
         print "To get a developer token, visit " \
-            "https://sandbox.evernote.com/api/DeveloperToken.action"
+                "https://sandbox.evernote.com/api/DeveloperToken.action"
         exit(1)
 
     client = EvernoteClient(token=auth_token, sandbox=True)
     user_store = client.get_user_store()
 
     version_ok = user_store.checkVersion(
-        "Evernote EDAMTest (Python)",
-        UserStoreConstants.EDAM_VERSION_MAJOR,
-        UserStoreConstants.EDAM_VERSION_MINOR
-    )
+            "Evernote EDAMTest (Python)",
+            UserStoreConstants.EDAM_VERSION_MAJOR,
+            UserStoreConstants.EDAM_VERSION_MINOR
+            )
     #print "Is my Evernote API version up to date? ", str(version_ok)
     #print ""
     if not version_ok:
@@ -43,7 +45,7 @@ def hello():
     nb = None
     #print "Found ", len(notebooks), " notebooks:"
     for notebook in notebooks:
-        print "  * ", notebook.name
+        #print "  * ", notebook.name
         if notebook.name == "Note":
             nb = notebook;
             break
@@ -60,12 +62,23 @@ def hello():
     spec.includeTitle = True
 
     noteML = note_store.findNotesMetadata(auth_token, filter, 0, 10, spec)
-    output = ""
+    noteBody = ""
     for note in noteML.notes:
         noteID = note.guid
         content = note_store.getNoteContent(auth_token, noteID);
-        output += "%s\n"%note.title
-        output += "%s\n"%content
-    figure = getAndDraw()
-    return output+figure
+        #output += "%s\n"%note.title
+        m = re.search(r'<en-note><div>(?P<content>[^<].+)</div></en-note>', content)
+        if m:
+            noteBody += "%s\n" % m.group('content')
 
+    #noteBody = noteBody.encode('utf-8')
+    #print isInstance(noteBody,unicode)
+
+    weather.getAndDraw()
+
+    output = codecs.open('weather-script-output.svg', 'r', encoding='utf-8').read()
+    #output =  output.replace(u''.encode('utf-8'), str(noteBody))
+    #codecs.open('weather.svg', 'w+', encoding='unicode').write(noteBody)
+    #print output
+
+    return output

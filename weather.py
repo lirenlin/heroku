@@ -142,7 +142,7 @@ def getAndDraw():
     # Write output
     codecs.open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
 
-    return output
+    #return output
 
     #import cairocffi as cairo
     #import rsvg
