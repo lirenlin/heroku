@@ -62,23 +62,49 @@ def hello():
     spec.includeTitle = True
 
     noteML = note_store.findNotesMetadata(auth_token, filter, 0, 10, spec)
-    noteBody = ""
+    content = ""
+    content_org = ""
+    content_new = ""
+
     for note in noteML.notes:
         noteID = note.guid
         content = note_store.getNoteContent(auth_token, noteID);
-        #output += "%s\n"%note.title
-        m = re.search(r'<en-note><div>(?P<content>[^<].+)</div></en-note>', content)
+        m = re.search(r'<en-note><div>(?P<content>.+)</div></en-note>', content)
         if m:
-            noteBody = "%s" % m.group('content')
-            noteBody = noteBody.decode('utf-8')
+            content_org = "%s\n" % m.group('content')
+            content = re.sub('<[^>]*>', '', content_org)
+            line = '''<tspan x="%d" y="%d">%s</tspan>'''
 
-    #print isInstance(noteBody,unicode)
+            n = 57
+            m = 0
+            index = n
+            y_aix = 450
+            length = len(content)
 
-    weather.getAndDraw()
+            while index <= length:
+                while ord(content[index-1]) < 128 and content[index-1] != ' ' and index != length:
+                    index = index - 1
+                index = ( m+n if index == m else index)
+                content_new += line%(300, y_aix, content[m:index])
 
-    output = codecs.open('weather-script-output.svg', 'r', encoding='utf-8').read()
-    output =  output.replace('NOTE_TEXT', noteBody)
-    codecs.open('weather.svg', 'w+', encoding='utf-8').write(output)
-    #print output
+                if index == length:
+                    break
+                y_aix = y_aix + 30
+                m = index
+                index = index + n
+                if index > length:
+                    index = length
+
+        content_new = content_new.decode('utf-8')
+        content_org = content_org.decode('utf-8')
+
+    output = weather.getAndDraw()
+
+    #output = codecs.open('weather-script-output.svg', 'r', encoding='utf-8').read()
+    output = output.replace('NOTE_TEXT', content_new)
+    output = output.replace('NOTE_ORG', content_org)
+
+    ## Write output
+    codecs.open('weather.svg', 'w', encoding='utf-8').write(output)
 
     return output

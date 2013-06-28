@@ -7,6 +7,65 @@ weatherField = ("cityName", "update", "weather", \
         "temperature", "wind", "cloud", "pressure", "humidity")
 dateFormat = "%Y-%m-%dT%H:%M:%S"
 
+def iconFromID(id):
+    icon = "default"
+    if 200 <= id <= 231:
+        icon = "tsra"
+    if 232 == id:
+        icon = "hi_tsra"
+
+    if 300 <= id <= 321:
+        icon = "ra1"
+
+    if 500 <= id <= 504:
+        icon = "hi_shwrs"
+    if 511 == id:
+        icon = "fzra"
+    if 520 <= id <= 521:
+        icon = "shra"
+    if id == 522:
+        icon = "hi_shwrs"
+
+    if 600 <= id <= 602:
+        icon = "sn"
+    if 611 <= id <= 621:
+        icon = "rasn"
+
+    if 701 == id:
+        icon = "mist"
+    if 711 == id:
+        icon = "smoke"
+    if 721 == id:
+        icon = "mist"
+    if 731 == id:
+        icon = "dust"
+    if 741 == id:
+        icon = "fg"
+
+    if 800 == id:
+        icon = "skc"
+    if 801 == id:
+        icon = "few"
+    if 802 == id:
+        icon = "sct"
+    if 803 == id:
+        icon = "bkn"
+    if 804 == id:
+        icon = "ovc"
+
+    if 900 == id:
+        icon = "nsurtsra"
+    if 901 == id:
+        icon = "nsurtsra"
+    if 902 == id:
+        icon = "nsurtsra"
+    if 905 == id:
+        icon = "wind"
+    if 906 == id:
+        icon = "ip"
+
+    return icon
+
 class wind:
     def __init__(self, speed, direction):
         self.speed = speed
@@ -104,6 +163,7 @@ class weatherForecast(weatherBase):
         pass
     def getForecast(self, cnt=4):
         tempList = list()
+        weatherList = list()
         cnt = self.cnt if cnt > self.cnt else cnt
         xml_forecast = self.dom.getElementsByTagName('time')
         for i in range(cnt):
@@ -112,16 +172,20 @@ class weatherForecast(weatherBase):
             avg = xml_forecast[i].getElementsByTagName('temperature')[0].getAttribute('day').split('.')[0]
             temp = temperature(avg, max, min)
             tempList.append(temp)
-        return tempList
+
+            id = xml_forecast[i].getElementsByTagName('symbol')[0].getAttribute('number').split('.')[0]
+            name = xml_forecast[i].getElementsByTagName('symbol')[0].getAttribute('name').split('.')[0]
+            weatherList.append((int(id), name))
+        return tempList, weatherList
 
 def getAndDraw():
     service = weatherForecast("Aachen", "de")
     service.connect()
-    tempList = service.getForecast()
+    tempList, weatherList = service.getForecast()
 
     day_one = datetime.datetime.today()
 
-    icons = ["bkn"]*4
+    icons = [iconFromID(x[0]) for x in weatherList]
     highs = [x.max for x in tempList]
     lows = [x.min for x in tempList]
 
@@ -142,7 +206,7 @@ def getAndDraw():
     # Write output
     codecs.open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
 
-    #return output
+    return output
 
     #import cairocffi as cairo
     #import rsvg
