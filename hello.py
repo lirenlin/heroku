@@ -78,7 +78,7 @@ def hello():
 
     output = codecs.open('weather-script-output.svg', 'r', encoding='utf-8').read()
     output =  output.replace('NOTE_TEXT', noteBody)
-    #codecs.open('weather.svg', 'w+', encoding='unicode').write(noteBody)
+    codecs.open('weather.svg', 'w+', encoding='utf-8').write(output)
     #print output
 
     return output
