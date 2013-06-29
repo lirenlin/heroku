@@ -171,6 +171,35 @@ def w2svg(feature):
     days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     output = output.replace('DAY_THREE',days_of_week[(day_one + 2*one_day).weekday()]).replace('DAY_FOUR',days_of_week[(day_one + 3*one_day).weekday()])
 
+    url = urllib2.urlopen(urlTmp%(key, "hourly" , country, city))
+    json_string = url.read()
+    weatherList = function["hourly"](json_string)
+    url.close
+    hourly_icons = [iconMap(x["icon"]) for x in weatherList]
+    hourly_avg = [x["avg"] for x in weatherList]
+
+    output = output.replace('HOURLY_0',hourly_avg[0])
+    output = output.replace('HOURLY_1',hourly_avg[1])
+    output = output.replace('HOURLY_2',hourly_avg[2])
+    output = output.replace('HOURLY_3',hourly_avg[3])
+    output = output.replace('HOURLY_4',hourly_avg[4])
+    output = output.replace('HOURLY_5',hourly_avg[5])
+    output = output.replace('HOURLY_6',hourly_avg[6])
+    output = output.replace('HOURLY_7',hourly_avg[7])
+    output = output.replace('HOURLY_8',hourly_avg[8])
+    output = output.replace('HOURLY_9',hourly_avg[9])
+
+    output = output.replace('HOURLY_ICON_0',hourlyicons[0])
+    output = output.replace('HOURLY_ICON_1',hourlyicons[1])
+    output = output.replace('HOURLY_ICON_2',hourlyicons[2])
+    output = output.replace('HOURLY_ICON_3',hourlyicons[3])
+    output = output.replace('HOURLY_ICON_4',hourlyicons[4])
+    output = output.replace('HOURLY_ICON_5',hourlyicons[5])
+    output = output.replace('HOURLY_ICON_6',hourlyicons[6])
+    output = output.replace('HOURLY_ICON_6',hourlyicons[7])
+    output = output.replace('HOURLY_ICON_7',hourlyicons[8])
+    output = output.replace('HOURLY_ICON_7',hourlyicons[9])
+
     return output
 
 
