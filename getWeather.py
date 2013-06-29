@@ -110,7 +110,7 @@ def hourly(json_string):
     weatherList = list()
     for data in parsed_json['hourly_forecast']:
         weatherDay = weather()
-        weatherDay["datetime"] = data['FCTTIME']['hour']
+        weatherDay["datetime"] = data['FCTTIME']['hour_padded'] + ":" + data['FCTTIME']['min']
         weatherDay["condition"] = data['condition']
         weatherDay["icon"] = data['icon']
         weatherDay["avg"] = data['temp']["metric"]
