@@ -11,6 +11,7 @@ from evernote.edam.notestore.ttypes import NoteFilter
 from evernote.edam.notestore.ttypes import NotesMetadataResultSpec
 from evernote.api.client import EvernoteClient
 import weather
+import getWeather
 
 app = Flask(__name__)
 
@@ -98,13 +99,14 @@ def hello():
         content_new = content_new.decode('utf-8')
         content_org = content_org.decode('utf-8')
 
-    output = weather.getAndDraw()
+    #output = weather.getAndDraw()
+    output = getWeather.w2svg("forecast")
 
     #output = codecs.open('weather-script-output.svg', 'r', encoding='utf-8').read()
     output = output.replace('NOTE_TEXT', content_new)
     output = output.replace('NOTE_ORG', content_org)
 
     ## Write output
-    codecs.open('weather.svg', 'w', encoding='utf-8').write(output)
+    #codecs.open('weather.svg', 'w', encoding='utf-8').write(output)
 
     return output
