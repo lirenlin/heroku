@@ -168,37 +168,59 @@ def w2svg(feature):
 
     # Insert days of week
     one_day = datetime.timedelta(days=1)
-    days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    output = output.replace('Tomorrow',days_of_week[(day_one + 1*one_day).weekday()])
     output = output.replace('DAY_THREE',days_of_week[(day_one + 2*one_day).weekday()]).replace('DAY_FOUR',days_of_week[(day_one + 3*one_day).weekday()])
 
     url = urllib2.urlopen(urlTmp%(key, "hourly" , country, city))
     json_string = url.read()
-    weatherList = function["hourly"](json_string)
+    hourlyList = function["hourly"](json_string)
     url.close
-    hourly_icons = [iconMap(x["icon"]) for x in weatherList]
-    hourly_avg = [x["avg"] for x in weatherList]
 
-    output = output.replace('HOURLY_0',hourly_avg[0])
-    output = output.replace('HOURLY_1',hourly_avg[1])
-    output = output.replace('HOURLY_2',hourly_avg[2])
-    output = output.replace('HOURLY_3',hourly_avg[3])
-    output = output.replace('HOURLY_4',hourly_avg[4])
-    output = output.replace('HOURLY_5',hourly_avg[5])
-    output = output.replace('HOURLY_6',hourly_avg[6])
-    output = output.replace('HOURLY_7',hourly_avg[7])
-    output = output.replace('HOURLY_8',hourly_avg[8])
-    output = output.replace('HOURLY_9',hourly_avg[9])
+    hourly_icons = [iconMap(x["icon"]) for x in hourlyList[0:10]]
+    hourly_datetime = [x["datetime"] for x in hourlyList[0:10]]
+    hourly_avg = [int(x["avg"]) for x in hourlyList[0:10]]
+    avg_max = int(max(hourly_avg))
+    avg_min = int(min(hourly_avg))
+    avg_range = avg_max - avg_min
 
-    output = output.replace('HOURLY_ICON_0',hourlyicons[0])
-    output = output.replace('HOURLY_ICON_1',hourlyicons[1])
-    output = output.replace('HOURLY_ICON_2',hourlyicons[2])
-    output = output.replace('HOURLY_ICON_3',hourlyicons[3])
-    output = output.replace('HOURLY_ICON_4',hourlyicons[4])
-    output = output.replace('HOURLY_ICON_5',hourlyicons[5])
-    output = output.replace('HOURLY_ICON_6',hourlyicons[6])
-    output = output.replace('HOURLY_ICON_6',hourlyicons[7])
-    output = output.replace('HOURLY_ICON_7',hourlyicons[8])
-    output = output.replace('HOURLY_ICON_7',hourlyicons[9])
+    hourly_yaix = [str(460 - int(float(x - avg_min)/avg_range*30)) for x in hourly_avg]
+
+    output = output.replace('HOURLY_MAX',str(avg_max))
+    output = output.replace('HOURLY_MIN',str(avg_min))
+
+    output = output.replace('HOURLY_0',hourly_datetime[0])
+    output = output.replace('HOURLY_1',hourly_datetime[1])
+    output = output.replace('HOURLY_2',hourly_datetime[2])
+    output = output.replace('HOURLY_3',hourly_datetime[3])
+    output = output.replace('HOURLY_4',hourly_datetime[4])
+    output = output.replace('HOURLY_5',hourly_datetime[5])
+    output = output.replace('HOURLY_6',hourly_datetime[6])
+    output = output.replace('HOURLY_7',hourly_datetime[7])
+    output = output.replace('HOURLY_8',hourly_datetime[8])
+    output = output.replace('HOURLY_9',hourly_datetime[9])
+
+    output = output.replace('HOURLY_ICON_0',hourly_icons[0])
+    output = output.replace('HOURLY_ICON_1',hourly_icons[1])
+    output = output.replace('HOURLY_ICON_2',hourly_icons[2])
+    output = output.replace('HOURLY_ICON_3',hourly_icons[3])
+    output = output.replace('HOURLY_ICON_4',hourly_icons[4])
+    output = output.replace('HOURLY_ICON_5',hourly_icons[5])
+    output = output.replace('HOURLY_ICON_6',hourly_icons[6])
+    output = output.replace('HOURLY_ICON_7',hourly_icons[7])
+    output = output.replace('HOURLY_ICON_8',hourly_icons[8])
+    output = output.replace('HOURLY_ICON_9',hourly_icons[9])
+
+    output = output.replace('HOURLY_YAIX_0',hourly_yaix[0])
+    output = output.replace('HOURLY_YAIX_1',hourly_yaix[1])
+    output = output.replace('HOURLY_YAIX_2',hourly_yaix[2])
+    output = output.replace('HOURLY_YAIX_3',hourly_yaix[3])
+    output = output.replace('HOURLY_YAIX_4',hourly_yaix[4])
+    output = output.replace('HOURLY_YAIX_5',hourly_yaix[5])
+    output = output.replace('HOURLY_YAIX_6',hourly_yaix[6])
+    output = output.replace('HOURLY_YAIX_7',hourly_yaix[7])
+    output = output.replace('HOURLY_YAIX_8',hourly_yaix[8])
+    output = output.replace('HOURLY_YAIX_9',hourly_yaix[9])
 
     return output
 

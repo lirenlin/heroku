@@ -45,7 +45,8 @@
 </g>
 
 <g font-family="DejaVu Sans">
-<text style="text-anchor:left;" font-size="25px" y="30" x="10">Today:COND_ONE</text>
+<text style="text-anchor:left;" font-size="25px" y="30" x="10">Today:</text>
+<text style="text-anchor:left;" font-size="25px" y="60" x="10">COND_ONE</text>
 
 <text style="text-anchor:end;" font-size="20px" y="310" x="60">High:</text>
 <text style="text-anchor:end;" font-size="30px" y="310" x="98">HIGH_ONE</text>
@@ -91,10 +92,42 @@
 <text style="text-anchor:left;" font-size="10px" y="375" x="570">%</text>
 </g>
 
+<text style="text-anchor:middle;" font-size="15px" y="480" x="30">HOURLY_0</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="90">HOURLY_1</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="150">HOURLY_2</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="210">HOURLY_3</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="270">HOURLY_4</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="330">HOURLY_5</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="390">HOURLY_6</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="450">HOURLY_7</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="510">HOURLY_8</text>
+<text style="text-anchor:middle;" font-size="15px" y="480" x="570">HOURLY_9</text>
+
+<text style="text-anchor:end;" font-size="15px" y="430" x="20">HOURLY_MAX</text>
+<text style="text-anchor:left;" font-size="10px" y="420" x="20">°C</text>
+<text style="text-anchor:end;" font-size="15px" y="460" x="20">HOURLY_MIN</text>
+<text style="text-anchor:left;" font-size="10px" y="450" x="20">°C</text>
+
+<!--
+<use xlink:href="#HOURLY_ICON_0" transform="translate(21  400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_1" transform="translate(63  400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_2" transform="translate(105 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_3" transform="translate(147 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_4" transform="translate(189 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_5" transform="translate(231 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_6" transform="translate(273 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_7" transform="translate(315 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_8" transform="translate(357 400) scale(0.4)" />
+<use xlink:href="#HOURLY_ICON_9" transform="translate(399 400) scale(0.4)" />
+-->
+
 <path stroke="black" d="M 330 20 L 330 400" stroke-width="6"/>
 
+<polyline points="30,HOURLY_YAIX_0 90,HOURLY_YAIX_1 150,HOURLY_YAIX_2 210,HOURLY_YAIX_3 270,HOURLY_YAIX_4 330,HOURLY_YAIX_5 390,HOURLY_YAIX_6 450,HOURLY_YAIX_7 510,HOURLY_YAIX_8 570,HOURLY_YAIX_9"
+  style="fill:none;stroke:black;stroke-width:1.5" />
+
 <switch>
-    <foreignObject x="5" y="450" width="600" height="350"
+    <foreignObject x="5" y="520" width="600" height="350"
             requiredExtensions="http://www.w3.org/1999/xhtml">
         <body xmlns="http://www.w3.org/1999/xhtml">
             <div>
@@ -103,7 +136,7 @@
          </body>
     </foreignObject>
 
-    <text style="text-anchor:middle" font-size="28px" x="300" y="450">
+    <text style="text-anchor:middle" font-size="28px" x="300" y="520">
         NOTE_TEXT
     </text>
 
