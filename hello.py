@@ -15,9 +15,16 @@ import getWeather
 
 app = Flask(__name__)
 
-@app.route('/')
+latestNote = ""
+updated = ""
+created = ""
 
+@app.route('/')
 def hello():
+    global latestNote
+    global updated
+    global created
+
     auth_token = "S=s1:U=6eb51:E=146ce55b0ee:C=13f76a484f1:P=1cd:A=en-devtoken:V=2:H=5d05df82a62652c0ed8f2e544df37758"
 
     if auth_token == "":
@@ -57,19 +64,27 @@ def hello():
 
     filter = NoteFilter()
     filter.notebookGuid = nb.guid
-    filter.order = Types.NoteSortOrder.CREATED
+    filter.order = Types.NoteSortOrder.UPDATED
 
     spec = NotesMetadataResultSpec()
     spec.includeTitle = True
 
-    noteML = note_store.findNotesMetadata(auth_token, filter, 0, 10, spec)
+    noteML = note_store.findNotesMetadata(auth_token, filter, 0, 1, spec)
     content = ""
     content_org = ""
     content_new = ""
 
     for note in noteML.notes:
         noteID = note.guid
-        content = note_store.getNoteContent(auth_token, noteID);
+
+        if note.created == created and note.updated == updated:
+            content = latestNote
+        else:
+            content = note_store.getNoteContent(auth_token, noteID);
+            latestNote = content
+            created = note.created
+            updated = note.updated
+
         m = re.search(r'<en-note><div>(?P<content>.+)</div></en-note>', content)
         if m:
             content_org = "%s\n" % m.group('content')
