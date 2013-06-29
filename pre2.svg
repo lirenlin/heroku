@@ -103,8 +103,11 @@
 <text style="text-anchor:middle;" font-size="15px" y="480" x="510">HOURLY_8</text>
 <text style="text-anchor:middle;" font-size="15px" y="480" x="570">HOURLY_9</text>
 
+<path stroke="black" d="M 30 430 L 570 430" stroke-width="1"/>
 <text style="text-anchor:end;" font-size="15px" y="430" x="20">HOURLY_MAX</text>
 <text style="text-anchor:left;" font-size="10px" y="420" x="20">°C</text>
+
+<path stroke="black" d="M 30 460 L 570 460" stroke-width="1"/>
 <text style="text-anchor:end;" font-size="15px" y="460" x="20">HOURLY_MIN</text>
 <text style="text-anchor:left;" font-size="10px" y="450" x="20">°C</text>
 
@@ -122,6 +125,17 @@
 -->
 
 <path stroke="black" d="M 330 20 L 330 400" stroke-width="6"/>
+<circle cx="30" cy="HOURLY_YAIX_0" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="90" cy="HOURLY_YAIX_1" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="150" cy="HOURLY_YAIX_2" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="210" cy="HOURLY_YAIX_3" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="270" cy="HOURLY_YAIX_4" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="330" cy="HOURLY_YAIX_5" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="390" cy="HOURLY_YAIX_6" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="450" cy="HOURLY_YAIX_7" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="510" cy="HOURLY_YAIX_8" r="2" stroke="black" stroke-width="1" fill="black"/>
+<circle cx="570" cy="HOURLY_YAIX_9" r="2" stroke="black" stroke-width="1" fill="black"/>
+
 
 <polyline points="30,HOURLY_YAIX_0 90,HOURLY_YAIX_1 150,HOURLY_YAIX_2 210,HOURLY_YAIX_3 270,HOURLY_YAIX_4 330,HOURLY_YAIX_5 390,HOURLY_YAIX_6 450,HOURLY_YAIX_7 510,HOURLY_YAIX_8 570,HOURLY_YAIX_9"
   style="fill:none;stroke:black;stroke-width:1.5" />
