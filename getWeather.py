@@ -4,8 +4,8 @@ import json
 import codecs
 import datetime
 
-country = "Germany"
-city = "Aachen"
+country = "UK"
+city = "Cambridge"
 key = "8bb106a0dd83d51f"
 urlTmp = "http://api.wunderground.com/api/%s/%s/q/%s/%s.json"
 

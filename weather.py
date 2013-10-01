@@ -179,7 +179,7 @@ class weatherForecast(weatherBase):
         return tempList, weatherList
 
 def getAndDraw():
-    service = weatherForecast("Aachen", "de")
+    service = weatherForecast("Cambridge", "uk")
     service.connect()
     tempList, weatherList = service.getForecast()
 
